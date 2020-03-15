@@ -13,39 +13,39 @@ interface Glyph<Type : Any> {
 	fun reset()
 }
 
-internal class DigitGlyph(private var value: Int = 0, private val broken: Boolean) : Glyph<Int> {
+internal class DigitGlyph(private var _value: Int = 0, private val _broken: Boolean) : Glyph<Int> {
 
 	companion object {
 		const val MAX_VALUE = 5
 	}
 
-	override fun get(): Int = value
+	override fun get(): Int = _value
 
 	override fun next(): Int {
-		check(value in 0..MAX_VALUE)
+		check(_value in 0..MAX_VALUE)
 
-		if (value < MAX_VALUE)
-			value++
+		if (_value < MAX_VALUE)
+			_value++
 		else
-			value = 0
+			_value = 0
 
-		return value
+		return _value
 	}
 
 	override fun previous(): Int {
-		check(value in 0..MAX_VALUE)
+		check(_value in 0..MAX_VALUE)
 
-		if (value > 0)
-			value--
+		if (_value > 0)
+			_value--
 		else
-			value = MAX_VALUE
+			_value = MAX_VALUE
 
-		return value
+		return _value
 	}
 
-	override fun isBroken(): Boolean = broken
+	override fun isBroken(): Boolean = _broken
 
 	override fun reset() {
-		value = 0
+		_value = 0
 	}
 }
