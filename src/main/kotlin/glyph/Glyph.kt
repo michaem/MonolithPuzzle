@@ -13,7 +13,7 @@ interface Glyph<Type : Any> {
 	fun reset()
 }
 
-class DigitGlyph(private var value: Int = 0, private val broken: Boolean) : Glyph<Int> {
+internal class DigitGlyph(private var value: Int = 0, private val broken: Boolean) : Glyph<Int> {
 
 	companion object {
 		const val MAX_VALUE = 5
