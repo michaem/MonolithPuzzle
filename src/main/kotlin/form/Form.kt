@@ -9,8 +9,14 @@ interface Form<Element> {
 
 	operator fun get(position: Position): Element
 
-	fun <Element> find(predicate: (value: Element) -> Boolean): Element?
+	fun search(element: Element): Boolean
 
-	fun findInRange(element: Element, start: Position, end: Position): Boolean
+	fun searchInRow(row: Int, element: Element): Boolean
+
+	fun searchInColumn(column: Int, element: Element): Boolean
 }
 
+interface MutableForm<Element> : Form<Element> {
+
+	operator fun set(position: Position, element: Element)
+}
