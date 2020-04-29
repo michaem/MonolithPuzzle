@@ -7,7 +7,9 @@ interface Form<Element> {
 
 	val size: Size
 
-	operator fun get(position: Position): Element
+	fun get(position: Position): Element
+
+	operator fun get(x: Int, y: Int): Element
 
 	fun search(element: Element): Boolean
 
@@ -18,5 +20,7 @@ interface Form<Element> {
 
 interface MutableForm<Element> : Form<Element> {
 
-	operator fun set(position: Position, element: Element)
+	fun set(position: Position, element: Element)
+
+	operator fun set(x: Int, y: Int, element: Element)
 }
