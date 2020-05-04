@@ -39,7 +39,7 @@ class HighlightedFormTest {
 	fun `get(Position(0, 0)) EXPECT placeholder element`() {
 		val form = HighlightedForm(size)
 
-		assert(form.get(Position(0, 0)) == '*')
+		assert(form[Position(0, 0)] == '*')
 	}
 
 	@Test
@@ -55,56 +55,8 @@ class HighlightedFormTest {
 	fun `set(Position(0,0, 'x') EXPECT 'x' element on position 0,0`() {
 		val form = HighlightedForm(size)
 
-		form.set(Position(0, 0), 'x')
+		form[Position(0, 0)] = 'x'
 
-		assert(form.get(Position(0, 0)) == 'x')
-	}
-
-	@Test
-	fun `search('x') EXPECT true`() {
-		val form = HighlightedForm(size)
-
-		form[3, 3] = 'x'
-
-		assert(form.search('x'))
-	}
-
-	@Test
-	fun `search('x') EXPECT false`() {
-		val form = HighlightedForm(size)
-
-		assert(!form.search('x'))
-	}
-
-	@Test
-	fun `searchInRow(3, 'x') EXPECT true`() {
-		val form = HighlightedForm(size)
-
-		form[3, 3] = 'x'
-
-		assert(form.searchInRow(3, 'x'))
-	}
-
-	@Test
-	fun `searchInRow(3, 'x') EXPECT false`() {
-		val form = HighlightedForm(size)
-
-		assert(!form.searchInRow(3, 'x'))
-	}
-
-	@Test
-	fun `searchInColumn(3, 'x') EXPECT true`() {
-		val form = HighlightedForm(size)
-
-		form[3, 3] = 'x'
-
-		assert(form.searchInColumn(3, 'x'))
-	}
-
-	@Test
-	fun `searchInColumn(3, 'x') EXPECT false`() {
-		val form = HighlightedForm(size)
-
-		assert(!form.searchInColumn(3, 'x'))
+		assert(form[Position(0, 0)] == 'x')
 	}
 }
