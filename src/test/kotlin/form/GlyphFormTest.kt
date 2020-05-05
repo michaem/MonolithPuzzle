@@ -78,26 +78,6 @@ class GlyphFormTest {
 	}
 
 	@Test
-	fun `search DigitGlyph(1) in plane direction EXPECT false`() {
-		val highlightedForm: HighlightedForm = mockk()
-		every { highlightedForm[any(), any()] } returns '*'
-		every { highlightedForm[2, 2] } returns '*'
-		every { highlightedForm[3, 3] } returns 'u'
-		every { highlightedForm[4, 4] } returns 'u'
-
-		val form = GlyphForm<DigitGlyph>(size, highlightedForm)
-		form[3, 3] = DigitGlyph(1)
-
-		assert(!form.search(DigitGlyph(1), Position(3, 3)))
-
-		verify(exactly = 0) { highlightedForm[0, 0] }
-		verify(exactly = 0) { highlightedForm[1, 1] }
-		verify(exactly = 1) { highlightedForm[2, 2] }
-		verify(exactly = 4) { highlightedForm[3, 3] }
-		verify(exactly = 1) { highlightedForm[4, 4] }
-	}
-
-	@Test
 	fun `search DigitGlyph(1) in reverse direction EXPECT true`() {
 		val highlightedForm: HighlightedForm = mockk()
 		every { highlightedForm[any(), any()] } returns '*'
@@ -117,12 +97,13 @@ class GlyphFormTest {
 	}
 
 	@Test
-	fun `search DigitGlyph(1) in reverse direction EXPECT false`() {
+	fun `search DigitGlyph(1) in all directions EXPECT false`() {
 		val highlightedForm: HighlightedForm = mockk()
-		every { highlightedForm[any(), any()] } returns '*'
+		every { highlightedForm[2, 2] } returns '*'
 		every { highlightedForm[2, 4] } returns '*'
 		every { highlightedForm[3, 3] } returns 'u'
 		every { highlightedForm[4, 2] } returns 'u'
+		every { highlightedForm[4, 4] } returns 'u'
 
 		val form = GlyphForm<DigitGlyph>(size, highlightedForm)
 		form[3, 3] = DigitGlyph(1)
@@ -132,5 +113,6 @@ class GlyphFormTest {
 		verify(exactly = 1) { highlightedForm[2, 4] }
 		verify(exactly = 4) { highlightedForm[3, 3] }
 		verify(exactly = 1) { highlightedForm[4, 2] }
+		verify(exactly = 1) { highlightedForm[4, 4] }
 	}
 }
