@@ -48,4 +48,6 @@ data class DigitGlyph(private var _value: Int = 0, private val _broken: Boolean 
 	override fun reset() {
 		_value = 0
 	}
+
+	override fun toString(): String = _value.toString()
 }

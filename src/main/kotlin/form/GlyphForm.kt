@@ -4,7 +4,7 @@ import form.entity.Position
 import form.entity.Size
 
 class GlyphForm<Glyph : Any>(override val size: Size,
-							 private val highlightedForm: HighlightedForm) : MutableForm<Glyph>, SearchableForm<Glyph> {
+							 private val highlightedForm: Form<Char>) : MutableForm<Glyph>, SearchableForm<Glyph> {
 
 	private val matrix: Array<Array<Any>>
 
@@ -115,6 +115,7 @@ class GlyphForm<Glyph : Any>(override val size: Size,
 		for (x in 0 until size.n) {
 			for (y in 0 until size.m) {
 				result += matrix[x][y]
+				if (y != size.m) result += " "
 			}
 			result += "\n"
 		}
