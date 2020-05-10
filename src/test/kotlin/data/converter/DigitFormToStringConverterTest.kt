@@ -1,9 +1,9 @@
 package data.converter
 
-import form.GlyphForm
-import form.HighlightedForm
-import form.entity.Size
-import glyph.DigitGlyph
+import domain.form.GlyphForm
+import domain.form.HighlightedForm
+import domain.form.entity.Size
+import domain.glyph.DigitGlyph
 import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test

@@ -1,6 +1,6 @@
 package data.converter
 
-import form.HighlightedForm
+import domain.form.HighlightedForm
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -9,14 +9,14 @@ import org.junit.jupiter.api.Test
 
 class ListToDigitFormConverterTest {
 
-	private val list = listOf("#Glyph form",
+	private val list = listOf("#Glyph domain.form",
 							  "0 0 4 0 3",
 							  "0 5 0 0 0",
 							  "0 4 3 1 0",
 							  "0 2 0 3 0",
 							  "0 0 0 0 5",
 							  " ",
-							  "#Highlighted form")
+							  "#Highlighted domain.form")
 
 	private val highlightedForm: HighlightedForm = mockk()
 	private val toHighlightedForm: ListToHighlightedFormConverter = mockk()
@@ -29,7 +29,7 @@ class ListToDigitFormConverterTest {
 		val form = toDigitForm(list)
 
 		for (x in 0 until form.size.n) {
-			// Start offset after #Glyph form
+			// Start offset after #Glyph domain.form
 			val digits = list[x + 1].split(" ")
 			for (y in 0 until form.size.m) {
 				assertEquals(form[x, y].get(), digits[y].toInt())

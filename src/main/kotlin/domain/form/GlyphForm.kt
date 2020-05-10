@@ -1,7 +1,7 @@
-package form
+package domain.form
 
-import form.entity.Position
-import form.entity.Size
+import domain.form.entity.Position
+import domain.form.entity.Size
 
 class GlyphForm<Glyph : Any>(override val size: Size,
 							 private val highlightedForm: Form<Char>) : MutableForm<Glyph>, SearchableForm<Glyph> {

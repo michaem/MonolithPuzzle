@@ -1,6 +1,6 @@
 package domain.repository
 
-import form.Form
+import domain.form.Form
 
 interface FormRepository<Element> {
 

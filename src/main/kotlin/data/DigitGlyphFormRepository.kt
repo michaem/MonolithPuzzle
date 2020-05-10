@@ -1,9 +1,9 @@
 package data
 
 import data.converter.Converter
+import domain.form.Form
+import domain.glyph.DigitGlyph
 import domain.repository.FormRepository
-import form.Form
-import glyph.DigitGlyph
 import java.io.File
 
 class DigitGlyphFormRepository(private val inputFile: File,

@@ -1,7 +1,7 @@
-package form
+package domain.form
 
-import form.entity.Position
-import form.entity.Size
+import domain.form.entity.Position
+import domain.form.entity.Size
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 

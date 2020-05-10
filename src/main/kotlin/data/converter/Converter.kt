@@ -1,10 +1,10 @@
 package data.converter
 
-import form.Form
-import form.GlyphForm
-import form.HighlightedForm
-import form.entity.Size
-import glyph.DigitGlyph
+import domain.form.Form
+import domain.form.GlyphForm
+import domain.form.HighlightedForm
+import domain.form.entity.Size
+import domain.glyph.DigitGlyph
 
 interface Converter<From, To> {
 
@@ -15,7 +15,7 @@ class ListToHighlightedFormConverter
 	: Converter<List<String>, Form<Char>> {
 
 	override fun invoke(from: List<String>): Form<Char> {
-		val sublist = from.subList(from.indexOf("#Highlighted form") + 1, from.size)
+		val sublist = from.subList(from.indexOf("#Highlighted domain.form") + 1, from.size)
 
 		val size = Size(sublist.size, sublist.size)
 		val highlightedForm = HighlightedForm(size)
@@ -37,7 +37,7 @@ class ListToDigitFormConverter(private val highlightedFormConverter: Converter<L
 	override fun invoke(from: List<String>): Form<DigitGlyph> {
 		val highlightedForm = highlightedFormConverter(from)
 
-		val sublist = from.subList(1, from.indexOf("#Highlighted form") - 1)
+		val sublist = from.subList(1, from.indexOf("#Highlighted domain.form") - 1)
 
 		val size = Size(sublist.size, sublist.size)
 		val glyphForm = GlyphForm<DigitGlyph>(size, highlightedForm)

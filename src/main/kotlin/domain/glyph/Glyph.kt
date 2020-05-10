@@ -1,4 +1,4 @@
-package glyph
+package domain.glyph
 
 interface Glyph<Type : Any> {
 
