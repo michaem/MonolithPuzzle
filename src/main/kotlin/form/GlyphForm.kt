@@ -115,7 +115,7 @@ class GlyphForm<Glyph : Any>(override val size: Size,
 		for (x in 0 until size.n) {
 			for (y in 0 until size.m) {
 				result += matrix[x][y]
-				if (y != size.m) result += " "
+				if (y != size.m - 1) result += " "
 			}
 			result += "\n"
 		}
