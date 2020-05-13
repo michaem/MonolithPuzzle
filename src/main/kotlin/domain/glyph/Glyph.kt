@@ -1,8 +1,8 @@
 package domain.glyph
 
-interface Glyph<Type : Any> {
+interface Glyph<out Type> {
 
-	fun get(): Type
+	val value: Type
 
 	fun next(): Type
 
@@ -13,13 +13,14 @@ interface Glyph<Type : Any> {
 	fun reset()
 }
 
-data class DigitGlyph(private var _value: Int = 0, private val _broken: Boolean = false) : Glyph<Int> {
+class DigitGlyph(private var _value: Int = 0, private val _broken: Boolean = false) : Glyph<Int> {
 
 	companion object {
 		const val MAX_VALUE = 5
 	}
 
-	override fun get(): Int = _value
+	override val value: Int
+		get() = _value
 
 	override fun next(): Int {
 		check(_value in 0..MAX_VALUE)
@@ -50,4 +51,16 @@ data class DigitGlyph(private var _value: Int = 0, private val _broken: Boolean 
 	}
 
 	override fun toString(): String = _value.toString()
+
+	override fun equals(other: Any?): Boolean {
+		if (javaClass != other?.javaClass) return false
+
+		other as DigitGlyph
+
+		if (_value != other._value) return false
+
+		return true
+	}
+
+	override fun hashCode(): Int = _value
 }

@@ -8,7 +8,7 @@ class DigitGlyphTest {
 	@Test
 	fun `get() EXPECT same value`() {
 		val glyph = DigitGlyph(1, false)
-		assertEquals(1, glyph.get())
+		assertEquals(1, glyph.value)
 	}
 
 	@Test
@@ -53,6 +53,6 @@ class DigitGlyphTest {
 
 		glyph.reset()
 
-		assertEquals(0, glyph.get())
+		assertEquals(0, glyph.value)
 	}
 }
