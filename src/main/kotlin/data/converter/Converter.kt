@@ -1,7 +1,6 @@
 package data.converter
 
-import domain.form.Form
-import domain.form.GlyphForm
+import domain.form.DigitGlyphForm
 import domain.form.HighlightedForm
 import domain.form.entity.Size
 import domain.glyph.DigitGlyph
@@ -12,10 +11,10 @@ interface Converter<From, To> {
 }
 
 class ListToHighlightedFormConverter
-	: Converter<List<String>, Form<Char>> {
+	: Converter<List<String>, HighlightedForm> {
 
-	override fun invoke(from: List<String>): Form<Char> {
-		val sublist = from.subList(from.indexOf("#Highlighted domain.form") + 1, from.size)
+	override fun invoke(from: List<String>): HighlightedForm {
+		val sublist = from.subList(from.indexOf("#Highlighted form") + 1, from.size)
 
 		val size = Size(sublist.size, sublist.size)
 		val highlightedForm = HighlightedForm(size)
@@ -31,16 +30,16 @@ class ListToHighlightedFormConverter
 	}
 }
 
-class ListToDigitFormConverter(private val highlightedFormConverter: Converter<List<String>, Form<Char>>)
-	: Converter<List<String>, Form<DigitGlyph>> {
+class ListToDigitFormConverter(private val highlightedFormConverter: Converter<List<String>, HighlightedForm>)
+	: Converter<List<String>, DigitGlyphForm> {
 
-	override fun invoke(from: List<String>): Form<DigitGlyph> {
+	override fun invoke(from: List<String>): DigitGlyphForm {
 		val highlightedForm = highlightedFormConverter(from)
 
-		val sublist = from.subList(1, from.indexOf("#Highlighted domain.form") - 1)
+		val sublist = from.subList(1, from.indexOf("#Highlighted form") - 1)
 
 		val size = Size(sublist.size, sublist.size)
-		val glyphForm = GlyphForm<DigitGlyph>(size, highlightedForm)
+		val glyphForm = DigitGlyphForm(size, highlightedForm)
 
 		for (x in 0 until size.n) {
 			val digitList = sublist[x].split(" ")
@@ -56,7 +55,7 @@ class ListToDigitFormConverter(private val highlightedFormConverter: Converter<L
 }
 
 class DigitFormToStringConverter
-	: Converter<Form<DigitGlyph>, String> {
+	: Converter<DigitGlyphForm, String> {
 
-	override fun invoke(from: Form<DigitGlyph>): String = "#Result\n${from}"
+	override fun invoke(from: DigitGlyphForm): String = "#Result\n${from}"
 }

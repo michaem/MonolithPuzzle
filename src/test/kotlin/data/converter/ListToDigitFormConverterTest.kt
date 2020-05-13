@@ -9,14 +9,14 @@ import org.junit.jupiter.api.Test
 
 class ListToDigitFormConverterTest {
 
-	private val list = listOf("#Glyph domain.form",
+	private val list = listOf("#Glyph form",
 							  "0 0 4 0 3",
 							  "0 5 0 0 0",
 							  "0 4 3 1 0",
 							  "0 2 0 3 0",
 							  "0 0 0 0 5",
 							  " ",
-							  "#Highlighted domain.form")
+							  "#Highlighted form")
 
 	private val highlightedForm: HighlightedForm = mockk()
 	private val toHighlightedForm: ListToHighlightedFormConverter = mockk()
@@ -32,7 +32,7 @@ class ListToDigitFormConverterTest {
 			// Start offset after #Glyph domain.form
 			val digits = list[x + 1].split(" ")
 			for (y in 0 until form.size.m) {
-				assertEquals(form[x, y].get(), digits[y].toInt())
+				assertEquals(form[x, y].value, digits[y].toInt())
 			}
 		}
 

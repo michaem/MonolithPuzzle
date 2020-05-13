@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 
 class ListToHighlightedFormConverterTest {
 
-	private val list = listOf("#Highlighted domain.form",
+	private val list = listOf("#Highlighted form",
 							  "x x x y y",
 							  "x x # y y",
 							  "z # # # y",

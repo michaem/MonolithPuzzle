@@ -1,6 +1,6 @@
 package data.converter
 
-import domain.form.GlyphForm
+import domain.form.DigitGlyphForm
 import domain.form.HighlightedForm
 import domain.form.entity.Size
 import domain.glyph.DigitGlyph
@@ -12,7 +12,7 @@ class DigitFormToStringConverterTest {
 
 	private val highlightedForm: HighlightedForm = mockk()
 
-	private val actualDigitForm = GlyphForm<DigitGlyph>(Size(5, 5), highlightedForm)
+	private val actualDigitForm = DigitGlyphForm(Size(5, 5), highlightedForm)
 		// I know, it's ridiculous expression, but clear from side effects of algorithms O(n^2) into loops for input data
 		.apply {
 			set(0, 0, DigitGlyph(0, false))
