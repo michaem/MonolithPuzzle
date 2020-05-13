@@ -9,20 +9,20 @@ import io.mockk.verify
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
-class GlyphFormTest {
+class DigitGlyphFormTest {
 
 	private val size = Size(5, 5)
 
 	@Test
 	fun `init() EXPECT matrix size 5x5`() {
-		val form = GlyphForm<DigitGlyph>(size, mockk())
+		val form = DigitGlyphForm(size, mockk())
 
 		assertThrows<ArrayIndexOutOfBoundsException> { (form[size.n, size.m]) }
 	}
 
 	@Test
 	fun `operator set(0,0) DigitGlyph(0) EXPECT DigitGlyph(0) on position 0,0`() {
-		val form = GlyphForm<DigitGlyph>(size, mockk())
+		val form = DigitGlyphForm(size, mockk())
 
 		form[0, 0] = DigitGlyph(0)
 
@@ -31,7 +31,7 @@ class GlyphFormTest {
 
 	@Test
 	fun `operator set(position, DigitGlyph(1)) EXPECT DigitGlyph(1) on position 0,0`() {
-		val form = GlyphForm<DigitGlyph>(size, mockk())
+		val form = DigitGlyphForm(size, mockk())
 		val position = Position(0, 0)
 
 		form[position] = DigitGlyph(0)
@@ -41,7 +41,7 @@ class GlyphFormTest {
 
 	@Test
 	fun `search DigitGlyph(1) in a row EXPECT true`() {
-		val form = GlyphForm<DigitGlyph>(size, mockk())
+		val form = DigitGlyphForm(size, mockk())
 
 		form[3, 3] = DigitGlyph(1)
 
@@ -50,7 +50,7 @@ class GlyphFormTest {
 
 	@Test
 	fun `search DigitGlyph(1) in a column EXPECT true`() {
-		val form = GlyphForm<DigitGlyph>(size, mockk())
+		val form = DigitGlyphForm(size, mockk())
 
 		form[3, 3] = DigitGlyph(1)
 
@@ -64,7 +64,7 @@ class GlyphFormTest {
 		every { highlightedForm[3, 3] } returns 'u'
 		every { highlightedForm[4, 4] } returns 'u'
 
-		val form = GlyphForm<DigitGlyph>(size, highlightedForm)
+		val form = DigitGlyphForm(size, highlightedForm)
 		form[3, 3] = DigitGlyph(1)
 		form[4, 4] = DigitGlyph(1)
 
@@ -85,7 +85,7 @@ class GlyphFormTest {
 		every { highlightedForm[3, 3] } returns 'u'
 		every { highlightedForm[4, 2] } returns 'u'
 
-		val form = GlyphForm<DigitGlyph>(size, highlightedForm)
+		val form = DigitGlyphForm(size, highlightedForm)
 		form[3, 3] = DigitGlyph(1)
 		form[4, 2] = DigitGlyph(1)
 
@@ -105,7 +105,7 @@ class GlyphFormTest {
 		every { highlightedForm[4, 2] } returns 'u'
 		every { highlightedForm[4, 4] } returns 'u'
 
-		val form = GlyphForm<DigitGlyph>(size, highlightedForm)
+		val form = DigitGlyphForm(size, highlightedForm)
 		form[3, 3] = DigitGlyph(1)
 
 		assert(!form.search(DigitGlyph(1), Position(3, 3)))

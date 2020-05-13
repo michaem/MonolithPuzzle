@@ -3,7 +3,7 @@ package domain.form
 import domain.form.entity.Position
 import domain.form.entity.Size
 
-interface Form<Element> {
+interface Form<out Element> {
 
 	val size: Size
 
@@ -19,7 +19,7 @@ interface MutableForm<Element> : Form<Element> {
 	operator fun set(x: Int, y: Int, element: Element)
 }
 
-interface SearchableForm<Element> {
+interface SearchableForm<Element> : Form<Element> {
 
 	fun search(element: Element, offsetPosition: Position = Position(0, 0)): Boolean
 }
