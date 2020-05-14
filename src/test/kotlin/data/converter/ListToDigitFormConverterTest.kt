@@ -18,7 +18,7 @@ class ListToDigitFormConverterTest {
 							  " ",
 							  "#Highlighted form")
 
-	private val highlightedForm: HighlightedForm = mockk()
+	private val highlightedForm: HighlightedForm<Char> = mockk()
 	private val toHighlightedForm: ListToHighlightedFormConverter = mockk()
 
 	@Test

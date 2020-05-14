@@ -2,9 +2,9 @@ package domain.usecase
 
 import data.converter.ListToDigitFormConverter
 import data.converter.ListToHighlightedFormConverter
-import domain.form.DigitGlyphForm
+import domain.form.GlyphForm
 import domain.glyph.DigitGlyph
-import domain.repository.FormRepository
+import domain.repository.GlyphFormRepository
 import io.mockk.Matcher
 import io.mockk.every
 import io.mockk.mockk
@@ -14,10 +14,10 @@ import org.junit.jupiter.api.Test
 
 class SolvePuzzleUseCaseTest {
 
-	private lateinit var actualGlyphForm: DigitGlyphForm
-	private lateinit var expectGlyphForm: DigitGlyphForm
+	private lateinit var actualGlyphForm: GlyphForm<DigitGlyph, Char>
+	private lateinit var expectGlyphForm: GlyphForm<DigitGlyph, Char>
 
-	private val repository: FormRepository<DigitGlyph> = mockk()
+	private val repository: GlyphFormRepository<DigitGlyph, Char> = mockk()
 
 	@BeforeEach
 	fun setUp() {
@@ -67,14 +67,14 @@ class SolvePuzzleUseCaseTest {
 		verify(exactly = 1) { repository.set(match(DigitGlyphFormMatcher(expectGlyphForm))) }
 	}
 
-	private class DigitGlyphFormMatcher(private val digitGlyphForm: DigitGlyphForm) : Matcher<DigitGlyphForm> {
+	private class DigitGlyphFormMatcher(private val glyphForm: GlyphForm<DigitGlyph, Char>) : Matcher<GlyphForm<DigitGlyph, Char>> {
 
-		override fun match(arg: DigitGlyphForm?): Boolean {
+		override fun match(arg: GlyphForm<DigitGlyph, Char>?): Boolean {
 			if (arg == null) return false
 
-			for (x in 0 until digitGlyphForm.size.n) {
-				for (y in 0 until digitGlyphForm.size.m) {
-					if (digitGlyphForm[x, y] != arg[x, y]) return false
+			for (x in 0 until glyphForm.size.n) {
+				for (y in 0 until glyphForm.size.m) {
+					if (glyphForm[x, y] != arg[x, y]) return false
 				}
 			}
 

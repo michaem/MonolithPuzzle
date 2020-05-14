@@ -1,6 +1,6 @@
 package data.converter
 
-import domain.form.DigitGlyphForm
+import domain.form.GlyphForm
 import domain.form.HighlightedForm
 import domain.form.entity.Size
 import domain.glyph.DigitGlyph
@@ -10,9 +10,9 @@ import org.junit.jupiter.api.Test
 
 class DigitFormToStringConverterTest {
 
-	private val highlightedForm: HighlightedForm = mockk()
+	private val highlightedForm: HighlightedForm<Char> = mockk()
 
-	private val actualDigitForm = DigitGlyphForm(Size(5, 5), highlightedForm)
+	private val actualDigitForm = GlyphForm<DigitGlyph, Char>(Size(5, 5), highlightedForm)
 		// I know, it's ridiculous expression, but clear from side effects of algorithms O(n^2) into loops for input data
 		.apply {
 			set(0, 0, DigitGlyph(0, false))

@@ -1,27 +1,27 @@
 package data
 
 import data.converter.Converter
-import domain.form.DigitGlyphForm
-import domain.form.Form
+import domain.form.GlyphForm
 import domain.glyph.DigitGlyph
-import domain.repository.FormRepository
+import domain.repository.GlyphFormRepository
 import java.io.File
 
-class DigitGlyphFormRepository(private val inputFile: File,
-							   private val outputFile: File,
-							   private val convertToDigitGlyphForm: Converter<List<String>, DigitGlyphForm>,
-							   private val convertToString: Converter<DigitGlyphForm, String>)
-	: FormRepository<DigitGlyph> {
+class DigitGlyphFormRepository(
+	private val inputFile: File,
+	private val outputFile: File,
+	private val convertToGlyphForm: Converter<List<String>, GlyphForm<DigitGlyph, Char>>,
+	private val convertToString: Converter<GlyphForm<DigitGlyph, Char>, String>)
+	: GlyphFormRepository<DigitGlyph, Char> {
 
-	override fun get(): Form<DigitGlyph> {
-		val data = inputFile.readLines()
-		return convertToDigitGlyphForm(data)
+	override fun get(): GlyphForm<DigitGlyph, Char> {
+		val list = inputFile.readLines()
+		return convertToGlyphForm(list)
 	}
 
-	override fun set(form: Form<DigitGlyph>) {
+	override fun set(glyphForm: GlyphForm<DigitGlyph, Char>) {
 		outputFile.apply {
 			createNewFile()
-			writeText(convertToString(form as DigitGlyphForm))
+			writeText(convertToString(glyphForm))
 		}
 	}
 
