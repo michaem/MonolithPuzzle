@@ -1,9 +1,9 @@
 package data.converter
 
-import domain.form.GlyphForm
-import domain.form.HighlightedForm
-import domain.form.entity.Size
-import domain.glyph.DigitGlyph
+import domain.entity.form.GlyphForm
+import domain.entity.form.HighlightedForm
+import domain.entity.form.Size
+import domain.entity.glyph.DigitGlyph
 
 interface Converter<From, To> {
 

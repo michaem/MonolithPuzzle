@@ -1,8 +1,6 @@
-package domain.form
+package domain.entity.form
 
-import domain.form.entity.Position
-import domain.form.entity.Size
-import domain.glyph.Glyph
+import domain.entity.glyph.Glyph
 
 class GlyphForm<GlyphType : Glyph<*>, HighlightedType>(
 	override val size: Size,

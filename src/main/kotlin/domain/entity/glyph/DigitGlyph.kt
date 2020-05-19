@@ -1,4 +1,4 @@
-package domain.glyph
+package domain.entity.glyph
 
 class DigitGlyph(private var _value: Int = 0, private val _broken: Boolean = false) : Glyph<Int> {
 

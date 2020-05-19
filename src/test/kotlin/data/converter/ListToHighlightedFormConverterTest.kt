@@ -19,7 +19,7 @@ class ListToHighlightedFormConverterTest {
 		val form = toHighlightedForm(list)
 
 		for (x in 0 until form.size.n) {
-			// Start offset after #Highlighted domain.form
+			// Start offset after #Highlighted domain.entity.form
 			val chars = list[x + 1].toCharArray().filter { it != ' ' }
 			for (y in 0 until form.size.m) {
 				assertEquals(form[x, y], chars[y])

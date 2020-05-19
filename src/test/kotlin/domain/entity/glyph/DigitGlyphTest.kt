@@ -1,4 +1,4 @@
-package domain.glyph
+package domain.entity.glyph
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test

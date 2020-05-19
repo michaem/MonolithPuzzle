@@ -1,8 +1,8 @@
 package data
 
 import data.converter.Converter
-import domain.form.GlyphForm
-import domain.glyph.DigitGlyph
+import domain.entity.form.GlyphForm
+import domain.entity.glyph.DigitGlyph
 import domain.repository.GlyphFormRepository
 import java.io.File
 

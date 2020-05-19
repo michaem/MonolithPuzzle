@@ -1,8 +1,6 @@
-package domain.form
+package domain.entity.form
 
-import domain.form.entity.Position
-import domain.form.entity.Size
-import domain.glyph.DigitGlyph
+import domain.entity.glyph.DigitGlyph
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify

@@ -1,6 +1,6 @@
 package data.converter
 
-import domain.form.HighlightedForm
+import domain.entity.form.HighlightedForm
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -29,7 +29,7 @@ class ListToDigitFormConverterTest {
 		val form = toDigitForm(list)
 
 		for (x in 0 until form.size.n) {
-			// Start offset after #Glyph domain.form
+			// Start offset after #Glyph domain.entity.form
 			val digits = list[x + 1].split(" ")
 			for (y in 0 until form.size.m) {
 				assertEquals(form[x, y].value, digits[y].toInt())

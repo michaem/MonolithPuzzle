@@ -1,7 +1,4 @@
-package domain.form
-
-import domain.form.entity.Position
-import domain.form.entity.Size
+package domain.entity.form
 
 interface Form<out Element> {
 

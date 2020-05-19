@@ -1,4 +1,4 @@
-package domain.glyph
+package domain.entity.glyph
 
 interface Glyph<out Type> {
 

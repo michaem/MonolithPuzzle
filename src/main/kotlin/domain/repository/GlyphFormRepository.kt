@@ -1,7 +1,7 @@
 package domain.repository
 
-import domain.form.GlyphForm
-import domain.glyph.Glyph
+import domain.entity.form.GlyphForm
+import domain.entity.glyph.Glyph
 
 interface GlyphFormRepository<GlyphType : Glyph<*>, HighlightedType> {
 

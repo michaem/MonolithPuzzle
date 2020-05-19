@@ -1,8 +1,8 @@
 package domain.usecase
 
-import domain.form.GlyphForm
-import domain.form.entity.Position
-import domain.glyph.Glyph
+import domain.entity.form.GlyphForm
+import domain.entity.form.Position
+import domain.entity.glyph.Glyph
 import domain.repository.GlyphFormRepository
 
 class SolvePuzzleUseCase<GlyphType : Glyph<*>, HighlightedType>(

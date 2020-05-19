@@ -2,8 +2,8 @@ package domain.usecase
 
 import data.converter.ListToDigitFormConverter
 import data.converter.ListToHighlightedFormConverter
-import domain.form.GlyphForm
-import domain.glyph.DigitGlyph
+import domain.entity.form.GlyphForm
+import domain.entity.glyph.DigitGlyph
 import domain.repository.GlyphFormRepository
 import io.mockk.Matcher
 import io.mockk.every
