@@ -1,0 +1,7 @@
+apply from: "$rootDir/dependencies.gradle"
+
+dependencies {
+	testImplementation testLibraries.mockk
+	testCompile testLibraries.junit
+}
+

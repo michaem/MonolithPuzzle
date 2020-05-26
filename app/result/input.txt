@@ -1,0 +1,11 @@
+#Glyph form
+2 0 0 0
+0 1 3 0
+0 2 4 0
+0 0 0 3
+
+#Highlighted form
+x x y y
+x x y y
+z z # #
+z z # #
