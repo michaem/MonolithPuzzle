@@ -22,32 +22,28 @@ class SolvePuzzleUseCaseTest {
 	@BeforeEach
 	fun setUp() {
 		val actualList = listOf("#Glyph form",
-								"0 0 4 0 3",
-								"0 5 0 0 0",
-								"0 4 3 1 0",
-								"0 2 0 3 0",
-								"0 0 0 0 5",
+								"2 0 0 0",
+								"0 1 3 0",
+								"0 2 4 0",
+								"0 0 0 3",
 								" ",
 								"#Highlighted form",
-								"x x x y y",
-								"x x # y y",
-								"z # # # y",
-								"z z # u u",
-								"z z u u u")
+								"x x y y",
+								"x x y y",
+								"z z # #",
+								"z z # #")
 
 		val expectList = listOf("#Glyph form",
-								"2 1 4 5 3",
-								"3 5 2 4 1",
-								"5 4 3 1 2",
-								"1 2 5 3 4",
-								"4 3 1 2 5",
+								"2 3 1 4",
+								"4 1 3 2",
+								"3 2 4 1",
+								"1 4 2 3",
 								" ",
 								"#Highlighted form",
-								"x x x y y",
-								"x x # y y",
-								"z # # # y",
-								"z z # u u",
-								"z z u u u")
+								"x x y y",
+								"x x y y",
+								"z z # #",
+								"z z # #")
 
 		val toHighlightedForm = ListToHighlightedFormConverter()
 		val toDigitForm = ListToDigitFormConverter(toHighlightedForm)

@@ -4,6 +4,7 @@ import domain.entity.form.GlyphForm
 import domain.entity.form.Position
 import domain.entity.glyph.Glyph
 import domain.repository.GlyphFormRepository
+import domain.usecase.Direction.*
 
 class SolvePuzzleUseCase<GlyphType : Glyph<*>, HighlightedType>(
 	private val repository: GlyphFormRepository<GlyphType, HighlightedType>) {
@@ -12,13 +13,17 @@ class SolvePuzzleUseCase<GlyphType : Glyph<*>, HighlightedType>(
 		val glyphForm: GlyphForm<GlyphType, HighlightedType> = repository.get()
 
 		var x = 0
+		var direction = Forward
 		while (x in 0 until glyphForm.size.n) {
 			var y = 0
 			while (y in 0 until glyphForm.size.m) {
 				val digitGlyph = glyphForm[x, y]
 
 				if (digitGlyph.isBroken()) {
-					y++
+					when (direction) {
+						Forward -> y++
+						Back    -> y--
+					}
 					continue
 				}
 
@@ -30,13 +35,12 @@ class SolvePuzzleUseCase<GlyphType : Glyph<*>, HighlightedType>(
 
 				y = when {
 					hasSame -> {
-						when {
-							glyphForm[x, y - 1].isBroken() -> y - 2 // previous glyph before broken
-							else                           -> y - 1 // previous glyph
-						}
+						direction = Back
+						y - 1 // previous glyph
 					}
 
 					else    -> {
+						direction = Forward
 						y + 1 // next glyph
 					}
 				}
@@ -54,4 +58,9 @@ class SolvePuzzleUseCase<GlyphType : Glyph<*>, HighlightedType>(
 
 		repository.set(glyphForm)
 	}
+}
+
+private enum class Direction {
+	Forward,
+	Back,
 }

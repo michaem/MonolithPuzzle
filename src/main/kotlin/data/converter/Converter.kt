@@ -45,7 +45,9 @@ class ListToDigitFormConverter(private val highlightedFormConverter: Converter<L
 			val digitList = sublist[x].split(" ")
 			for (y in 0 until size.m) {
 				val digit = digitList[y].toInt()
-				glyphForm[x, y] = DigitGlyph(digit, digit != 0)
+				// Max digit value based on form elements count
+				val digitMax = sublist.size
+				glyphForm[x, y] = DigitGlyph(digit, digit != 0, digitMax)
 			}
 		}
 

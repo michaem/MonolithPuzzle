@@ -1,18 +1,16 @@
 package domain.entity.glyph
 
-class DigitGlyph(private var _value: Int = 0, private val _broken: Boolean = false) : Glyph<Int> {
-
-	companion object {
-		const val MAX_VALUE = 5
-	}
+class DigitGlyph(private var _value: Int = 0,
+				 private val _broken: Boolean = false,
+				 private val _maxValue: Int) : Glyph<Int> {
 
 	override val value: Int
 		get() = _value
 
 	override fun next(): Int {
-		check(_value in 0..MAX_VALUE)
+		check(_value in 0.._maxValue)
 
-		if (_value < MAX_VALUE)
+		if (_value < _maxValue)
 			_value++
 		else
 			_value = 0
@@ -21,12 +19,12 @@ class DigitGlyph(private var _value: Int = 0, private val _broken: Boolean = fal
 	}
 
 	override fun previous(): Int {
-		check(_value in 0..MAX_VALUE)
+		check(_value in 0.._maxValue)
 
 		if (_value > 0)
 			_value--
 		else
-			_value = MAX_VALUE
+			_value = _maxValue
 
 		return _value
 	}

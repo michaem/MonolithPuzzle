@@ -10,6 +10,7 @@ import org.junit.jupiter.api.assertThrows
 class GlyphFormTest {
 
 	private val size = Size(5, 5)
+	private val maxValue = 5
 
 	@Test
 	fun `init() EXPECT matrix size 5x5`() {
@@ -22,9 +23,9 @@ class GlyphFormTest {
 	fun `operator set(0,0) DigitGlyph(0) EXPECT DigitGlyph(0) on position 0,0`() {
 		val form = GlyphForm<DigitGlyph, Char>(size, mockk())
 
-		form[0, 0] = DigitGlyph(0)
+		form[0, 0] = DigitGlyph(0, false, maxValue)
 
-		assert(form[0, 0] == DigitGlyph(0))
+		assert(form[0, 0] == DigitGlyph(0, false, maxValue))
 	}
 
 	@Test
@@ -32,27 +33,27 @@ class GlyphFormTest {
 		val form = GlyphForm<DigitGlyph, Char>(size, mockk())
 		val position = Position(0, 0)
 
-		form[position] = DigitGlyph(0)
+		form[position] = DigitGlyph(0, false, maxValue)
 
-		assert(form[position] == DigitGlyph(0))
+		assert(form[position] == DigitGlyph(0, false, maxValue))
 	}
 
 	@Test
 	fun `search DigitGlyph(1) in a row EXPECT true`() {
 		val form = GlyphForm<DigitGlyph, Char>(size, mockk())
 
-		form[3, 3] = DigitGlyph(1)
+		form[3, 3] = DigitGlyph(1, false, maxValue)
 
-		assert(form.search(DigitGlyph(1), Position(3, 2)))
+		assert(form.search(DigitGlyph(1, false, maxValue), Position(3, 2)))
 	}
 
 	@Test
 	fun `search DigitGlyph(1) in a column EXPECT true`() {
 		val form = GlyphForm<DigitGlyph, Char>(size, mockk())
 
-		form[3, 3] = DigitGlyph(1)
+		form[3, 3] = DigitGlyph(1, false, maxValue)
 
-		assert(form.search(DigitGlyph(1), Position(2, 3)))
+		assert(form.search(DigitGlyph(1, false, maxValue), Position(2, 3)))
 	}
 
 	@Test
@@ -63,10 +64,10 @@ class GlyphFormTest {
 		every { highlightedForm[4, 4] } returns 'u'
 
 		val form = GlyphForm<DigitGlyph, Char>(size, highlightedForm)
-		form[3, 3] = DigitGlyph(1)
-		form[4, 4] = DigitGlyph(1)
+		form[3, 3] = DigitGlyph(1, false, maxValue)
+		form[4, 4] = DigitGlyph(1, false, maxValue)
 
-		assert(form.search(DigitGlyph(1), Position(3, 3)))
+		assert(form.search(DigitGlyph(1, false, maxValue), Position(3, 3)))
 
 		verify(exactly = 0) { highlightedForm[0, 0] }
 		verify(exactly = 0) { highlightedForm[1, 1] }
@@ -84,10 +85,10 @@ class GlyphFormTest {
 		every { highlightedForm[4, 2] } returns 'u'
 
 		val form = GlyphForm<DigitGlyph, Char>(size, highlightedForm)
-		form[3, 3] = DigitGlyph(1)
-		form[4, 2] = DigitGlyph(1)
+		form[3, 3] = DigitGlyph(1, false, maxValue)
+		form[4, 2] = DigitGlyph(1, false, maxValue)
 
-		assert(form.search(DigitGlyph(1), Position(3, 3)))
+		assert(form.search(DigitGlyph(1, false, maxValue), Position(3, 3)))
 
 		verify(exactly = 1) { highlightedForm[2, 4] }
 		verify(exactly = 4) { highlightedForm[3, 3] }
@@ -104,9 +105,9 @@ class GlyphFormTest {
 		every { highlightedForm[4, 4] } returns 'u'
 
 		val form = GlyphForm<DigitGlyph, Char>(size, highlightedForm)
-		form[3, 3] = DigitGlyph(1)
+		form[3, 3] = DigitGlyph(1, false, maxValue)
 
-		assert(!form.search(DigitGlyph(1), Position(3, 3)))
+		assert(!form.search(DigitGlyph(1, false, maxValue), Position(3, 3)))
 
 		verify(exactly = 1) { highlightedForm[2, 4] }
 		verify(exactly = 4) { highlightedForm[3, 3] }
