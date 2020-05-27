@@ -15,7 +15,12 @@ class SolvePuzzleUseCase<GlyphType : Glyph<*>, HighlightedType>(
 		var x = 0
 		var direction = Forward
 		while (x in 0 until glyphForm.size.n) {
-			var y = 0
+
+			var y = when (direction) {
+				Forward -> 0
+				Back    -> glyphForm.size.m - 1
+			}
+
 			while (y in 0 until glyphForm.size.m) {
 				val glyph = glyphForm[x, y]
 
@@ -33,24 +38,24 @@ class SolvePuzzleUseCase<GlyphType : Glyph<*>, HighlightedType>(
 					if (!hasSame) break
 				}
 
-				y = when {
+				when {
 					hasSame -> {
 						direction = Back
-						y - 1 // previous glyph
+						y-- // previous glyph
 					}
 
 					else    -> {
 						direction = Forward
-						y + 1 // next glyph
+						y++ // next glyph
 					}
 				}
 
 				if (y < 0) break
 			}
 
-			x = when {
-				y < 0 -> x - 1 // return on previous row
-				else  -> x + 1 // move to next row
+			when (direction) {
+				Forward -> x++ // move to next row
+				Back    -> x-- // return on previous row
 			}
 
 			if (y < 0 && x < 0) throw IndexOutOfBoundsException("Glyph form is corrupted, x = $x, y = $y")
